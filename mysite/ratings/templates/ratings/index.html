@@ -1,0 +1,16 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'reviews/styles.css' %}">
+
+{% include "ratings/header.html" %}
+
+{% if list_of_all_movies %}
+    <ul>
+    {% for movie in list_of_all_movies %}
+        <li><a href="{% url 'ratings:movie_detail' movie.id %}">{{ movie.title }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No movies are available.</p>
+{% endif %}
+

@@ -1,0 +1,28 @@
+{% load static %}
+
+{% include "ratings/header.html" %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'reviews/styles.css' %}">
+
+<div id="movie_title">
+    <p>Movie: {{ review.movie.title }}</p>
+</div>
+
+<div id="move_reviewed_by">
+    <p>Reviewed by: {{ review.reviewer_name }} </p>     
+</div>
+
+<div id="movie_review_submit_date">
+    <p>Date Reviewed: {{ review.submit_date }}</p>
+</div>
+
+<div id="movie_score">
+    <p>Score out of 10: {{ review.score }} </p>
+</div>
+
+<div id="review_text">
+    <p>Review: {{ review.text }} </p>
+</div>
+
+
+

@@ -1,0 +1,28 @@
+{% include "ratings/header.html" %}
+
+<h1>{{ movie.title }}</h1>
+
+<div id="reviews">
+    <h3>User Reviews</h3>
+    <!-- because movie has a lot of reviews. and it has to do with the join in the database. reference back to child from parent.  review_set.all -->
+    {% for review in movie.review_set.all %}
+    
+        <p><a href="{% url 'ratings:review_detail' review.id %}">{{ review.reviewer_name }}: {{ review.score }}</a></p>
+
+    {% endfor %}
+</div>
+
+<form action="{% url 'ratings:rate_movie' movie.id %}" method="post">
+{% csrf_token %}
+    <label for="reviewer_name">Reviewer's Name: </label><br>
+    <input type="text" name="reviewer_name" id="reviewer_name" placeholder="name"><br><br>
+
+    <label for="score">Movie Score (1-10): </label><br>
+    <input type="range" value="10" name="score" id="score" min="1" max="10" oninput="this.nextElementSibling.value=this.value">
+    <output>10</output><br><br>
+
+    <label for="text">Movie Review: </label><br>
+    <textarea name="text" id="text" rows="4" cols="50" placeholder="movie review"></textarea><br><br>
+    
+<input type="submit" value="Submit">
+</form>
